@@ -9,6 +9,12 @@
 
 
 <?php
+define('DBTYPE', 'mysql');
+define('DBHOST', 'localhost');
+define('DBNAME', 'test3');
+define("DBUSER", "root");
+define("DBPASS", "kelvin5568qq");
+
 //!index.php 总入口
 /**
 * index.php的 调用形式为：
@@ -21,33 +27,43 @@ require_once('./Model.php');
 require_once('./View.php');
 require_once('./Controller.php');
 //创建DataAccess对象（请根据你的需要修改参数值）
-$dao=new DataAccess('localhost','root','kelvin5568qq','test3');
+$dao=new DataAccess(DBHOST,DBUSER,DBPASS,DBNAME);
 //根据$_GET["action"]取值的不同调用不同的控制器子类
-print_r($_POST);
-// $action=$_POST["action"];
+// print_r($_POST);
+print_r($_SERVER['REQUEST_METHOD']);
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+  $action="create";
+
+} else {
+  $action = '';
+}
+
 
 switch ($action)
 {
-case "post":
-  $controller=new postController($dao,$_POST);
-  break;
-case "list":
-  $controller=new listController($dao);
-  break;
-case "delete":
-  $controller=new deleteController($dao,$_GET["id"]);
-  break;
-default:
-  $controller=new indexController($dao);
-  break;
+  // case "post":
+  //   $controller=new postController($dao,$_POST);
+  //   break;
+  case "create":
+    $controller=new rectangleController($dao,$_POST);
+    break;
+  // case "list":
+  //   $controller=new listController($dao);
+  //   break;
+  // case "delete":
+  //   $controller=new deleteController($dao,$_GET["id"]);
+  //   break;
+  default:
+    $controller=new indexController($dao);
+    break;
 
 }
 
 
 
 
-$view=$controller->getView(); //获取视图对象
-$view->display(); //输出HTML
+// $view=$controller->getView(); //获取视图对象
+// $view->display(); //输出HTML
 ?>
 </body>
 </html>

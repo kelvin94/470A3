@@ -18,20 +18,31 @@ function __construct($dao) {
   $this->dao=$dao;
 }
 function listNote() { //获取全部留言
-  $this->dao->fetch("SELECT * FROM note");
+  $this->dao->fetch("SELECT * FROM rectangles");
+}
+function listRectangles() { //获取全部留言
+  $this->dao->fetch("SELECT * FROM rectangles");
 }
 function postNote($name,$content) { //插入一条新留言
-$sql = "INSERT INTO `test`.`note`
-(`id`, `name`, `content`, `ndate`, `add`)
-VALUES (NULL, '$name', '$content', NULL, NULL);";
-//echo $sql; //对于较复杂的合成SQL语句，<br />
-//调试时用echo输出一下看看是否正确是一种常用的调试技巧
-$this->dao->fetch($sql);
+  $sql = "INSERT INTO `test`.`note`
+  (`id`, `name`, `content`, `ndate`, `add`)
+  VALUES (NULL, '$name', '$content', NULL, NULL);";
+  //echo $sql; //对于较复杂的合成SQL语句，<br />
+  //调试时用echo输出一下看看是否正确是一种常用的调试技巧
+  $this->dao->fetch($sql);
+}
+function createRectangle($width,$height, $color) {
+  $sql = "INSERT INTO `test3`.`rectangles`
+  ( `width`, `height`, `color`)
+  VALUES ( '$width', '$height', '$color');";
+  //echo $sql; //对于较复杂的合成SQL语句，<br />
+  //调试时用echo输出一下看看是否正确是一种常用的调试技巧
+  $this->dao->fetch($sql);
 }
 function deleteNote($id) { //删除一条留言，$id是该条留言的id
-$sql = "DELETE FROM `test`.`note` WHERE `id`=$id;";
-//echo $sql;
-$this->dao->fetch($sql);
+  $sql = "DELETE FROM `test`.`note` WHERE `id`=$id;";
+  //echo $sql;
+  $this->dao->fetch($sql);
 }
 function getNote() { //获取以数组形式存储的一条留言
 //View利用此方法从查询结果中读出数据并显示

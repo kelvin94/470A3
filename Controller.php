@@ -5,22 +5,23 @@
 * 对应于完成该功能控制的相应子类
 */
 class Controller {
-var $model; // Model 对象
-var $view; // View 对象
-//! 构造函数
-/**
-* 构造一个Model对象存储于成员变量$this->model;
-*/
-function __construct ($dao) {
-  $this->model=new Model($dao);
-}
-function getView() { //获取View函数
-  //返回视图对象view
-  //对应特定功能的Controller子类生成对应的View子类的对象
-  //通过该函数返回给外部调用者
-  return $this->view;
+  var $model; // Model 对象
+  var $view; // View 对象
+  //! 构造函数
+  /**
+  * 构造一个Model对象存储于成员变量$this->model;
+  */
+  function __construct ($dao) {
+    $this->model=new Model($dao);
   }
+  function getView() { //获取View函数
+    //返回视图对象view
+    //对应特定功能的Controller子类生成对应的View子类的对象
+    //通过该函数返回给外部调用者
+    return $this->view;
+    }
 }
+
 //用于控制显示留言列表的子类
 class listController extends Controller{ //extends表示继承
   function __construct ($dao) {
@@ -37,6 +38,19 @@ class postController extends Controller{
   function __construct ($dao, $post) {
     parent::__construct($dao);
     $this->view=new postView($this->model, $post);
+    //$post的实参为$_POST数组
+    //表单中的留言项目存储在该系统数组中
+  }
+  
+}
+class rectangleController extends Controller{
+  function __construct ($dao, $rectangle) {
+    $this->createAction($dao, $rectangle);
+  }
+  
+  public function createAction($dao, $rectangle) {
+    parent::__construct($dao);
+    $this->view=new rectangleView($this->model, $rectangle);
     //$post的实参为$_POST数组
     //表单中的留言项目存储在该系统数组中
   }
