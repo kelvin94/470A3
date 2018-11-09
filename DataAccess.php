@@ -19,27 +19,11 @@ function __construct($host,$user,$password,$dbname) {
   // $this->db=mysqli_connect($host,$user,$pass); //连接数据库服务器
   $this->db = mysqli_connect( $host, $user, $password, $dbname ) or die( "ERROR : " . mysqli_error() ); // NOTE: mysqli_connect() will return an object representing the connection to the database, or FALSE on failure
   
-  // if($this->db->connect_errno) {
-  //   echo "Failed to connect to MySQL: (" . $this->db->connect_errno . ") " . $this->db->connect_error;
-  // }
-  // mysqli_select_db($this->db,$db); //选择所需数据库
-  //特别注意$db和$this->db的区别
-  //前者是构造函数参数
-  //后者是类的数据成员
-  // TODO: 检查 rectangle table是否存在不在就create
-  $result2 = $this->db->query("CREATE TABLE Rectangles(
-    ID int NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(ID),
-    Width int,
-    Height int,
-    Color varchar(255));");
-  // $result2 = mysqli_query($this->db, $query);
-  echo "<br>";
-  echo "<br>";
-  echo $result2;
-  echo "<br>";
-  if ($result = mysqli_query($this->db, "SHOW TABLES LIKE 'rectangles'")) {
-    echo "<br>";
+  if($this->db->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $this->db->connect_errno . ") " . $this->db->connect_error;
+  }
+
+  if ($result = mysqli_query($this->db, "SHOW TABLES LIKE 'rectangles';")) {
     if($result->num_rows < 1 || $result == null) {
         echo "Table not exists";
         // $query = "SELECT * FROM students";
@@ -60,7 +44,7 @@ function __construct($host,$user,$password,$dbname) {
       }
   }
   else {
-      echo "Table does not exist";
+      echo "Table does  exist";
   }
 }
 //! 执行SQL语句
