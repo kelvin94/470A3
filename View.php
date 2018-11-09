@@ -55,6 +55,7 @@ class rectangleView extends View //发表留言的子类
     print_r($rectangle);
     $this->model->createRectangle($rectangle['width'],$rectangle['height'], $rectangle['color']);
     $test = '123';
+    
     require('views/hello.php');
   }
   
@@ -77,6 +78,8 @@ class indexView extends View
   {
     // parent::__construct($model);
     $test = 'inside indexView';
+    $height = '200';
+    $width = '300';
     require('views/hello.php'); // jyl：这样就可以return一个html了
     // $this->output="Note Delete OK!<br><a href=\"".$_SERVER['PHP_SELF']."?action=list\">查看</a>";
   }

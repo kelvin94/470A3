@@ -25,7 +25,7 @@
 
 <script>
   $(function() {
-  $("#rectangles").width(80).height(50).css('background-color', 'red');
+  $("#rectangles").width(<?php echo $width; ?>).height(<?php echo $height; ?>).css('background-color', 'red');
 });
 </script>
 
