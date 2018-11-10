@@ -12,7 +12,6 @@ class Controller {
     }
 }
 
-//用于控制显示留言列表的子类
 class listController extends Controller{ //extends表示继承
   function __construct ($dao) {
     parent::__construct($dao);
@@ -20,15 +19,7 @@ class listController extends Controller{ //extends表示继承
 
   }
 }
-//用于控制添加留言的子类
-class postController extends Controller{
-  function __construct ($dao, $post) {
-    parent::__construct($dao);
-    $this->view=new postView($this->model, $post);
 
-  }
-
-}
 class rectangleController extends Controller{
   function __construct ($dao, $rectangle) {
     $this->createAction($dao, $rectangle);

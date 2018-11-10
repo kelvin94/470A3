@@ -1,22 +1,9 @@
 <?php
-/**
-* 一个用来访问MySQL的类
-* 仅仅实现演示所需的基本功能，没有容错等
-* 代码未作修改，只是把注释翻译一下，加了点自己的体会
-*/
 class DataAccess {
-var $db; //用于存储数据库连接
-var $query; //用于存储查询源
-//! 构造函数.
-/**
-* 创建一个新的DataAccess对象
-* @param $host 数据库服务器名称
-* @param $user 数据库服务器用户名
-* @param $pass 密码
-* @param $db 数据库名称
-*/
+var $db;
+var $query;
+
 function __construct($host,$user,$password,$dbname) {
-  // $this->db=mysqli_connect($host,$user,$pass); //连接数据库服务器
   $this->db = mysqli_connect( $host, $user, $password, $dbname ) or die( "ERROR : " . mysqli_error() ); // NOTE: mysqli_connect() will return an object representing the connection to the database, or FALSE on failure
   
   if($this->db->connect_errno) {

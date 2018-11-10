@@ -30,7 +30,6 @@ require_once('./View.php');
 require_once('./Controller.php');
 $dao=new DataAccess(DBHOST,DBUSER,DBPASS,DBNAME);
 
-// print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method'])) {
   if( $_POST['method'] == 'put') {
     $action="put";
@@ -62,11 +61,8 @@ switch ($action)
 
 }
 
-
-
-
-$view=$controller->getView(); //获取视图对象
-$view->display(); //输出HTML
+$view=$controller->getView();
+$view->display();
 ?>
 </body>
 </html>

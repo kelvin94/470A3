@@ -11,7 +11,7 @@ class View {
   }
 
 
-  function display() { //输出最终格式化的HTML数据
+  function display() {
     echo($this->output);
   }
   public function __get($name)
