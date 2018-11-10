@@ -1,7 +1,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>PHP MVC留言板</title>
 </head>
 <body>
 
@@ -13,10 +12,10 @@
 
 if($_SERVER['SERVER_ADDR'] != "::1"){
   // Production config DB
-  define('DBHOST', 'localhost');
-  define('DBNAME', 'test3');
-  define("DBUSER", "root");
-  define("DBPASS", "");
+  define('DBHOST', '10.150.0.4');
+  define('DBNAME', 'cmpt470');
+  define("DBUSER", "jyl");
+  define("DBPASS", "_kelvin5568QQ");
 }else{
   // Developer server
   define('DBHOST', 'localhost');
