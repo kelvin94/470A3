@@ -54,8 +54,11 @@ function __construct($host,$user,$password,$dbname) {
 * @return void
 */
 function fetch($sql) {
-// $this->query=mysql_unbuffered_query($sql,$this->db); // Perform query here
+  // $this->query=mysql_unbuffered_query($sql,$this->db); // Perform query here
   $this->query=mysqli_query($this->db,$sql)or trigger_error($this->db->error."[$sql]"); // Perform query here
+  echo "<br>";
+  echo "what's in this->query in Dao->fetch function ";
+  // print_r($this->query->fetch_all());
 
 }
 //! 获取一条记录
@@ -63,12 +66,19 @@ function fetch($sql) {
 * 以数组形式返回查询结果的一行记录，通过循环调用该函数可遍历全部记录
 * @return mixed
 */
-function getRow () {
-if ( $row=mysql_fetch_array($this->query,MYSQL_ASSOC) )
-//MYSQL_ASSOC参数决定了数组键名用字段名表示
-return $row;
-else
-return false;
-}
+  function getRow () {
+    if ( $row=mysql_fetch_array($this->query,MYSQL_ASSOC) )
+    //MYSQL_ASSOC参数决定了数组键名用字段名表示
+    return $row;
+    else
+    return false;
+  } 
+  function getAllRows () {
+    if ( $rows = mysql_fetch_array($this->query,MYSQL_ASSOC) )
+    //MYSQL_ASSOC参数决定了数组键名用字段名表示
+    return $rows;
+    else
+    return false;
+  } 
 }
 ?>

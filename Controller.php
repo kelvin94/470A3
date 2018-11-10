@@ -66,7 +66,7 @@ class deleteController extends Controller{
 class indexController extends Controller{
   function __construct ($dao) {
     parent::__construct($dao);
-    $this->view=new indexView();
+    $this->view=new indexView($this->model);
   }
 }
 ?>

@@ -9,19 +9,25 @@
 
 
 <?php
-define('DBTYPE', 'mysql');
-define('DBHOST', 'localhost');
-define('DBNAME', 'test3');
-define("DBUSER", "root");
-define("DBPASS", "kelvin5568qq");
+// print_r($_SERVER);
+//echo "<br>";
+// print_r($_SERVER);
 
+if($_SERVER['SERVER_ADDR'] != "::1"){
+  // Production config DB
+  define('DBHOST', 'localhost');
+  define('DBNAME', 'test3');
+  define("DBUSER", "root");
+  define("DBPASS", "");
+}else{
+  // Developer server
+  define('DBHOST', 'localhost');
+  define('DBNAME', 'test3');
+  define("DBUSER", "root");
+  define("DBPASS", "");
+}
 //!index.php 总入口
-/**
-* index.php的 调用形式为：
-* 显示所有留言：index.php?action=list
-* 添加留 言 ：index.php?action=post
-* 删除留言 ：index.php?action=delete& id=x
-*/
+
 require_once('./DataAccess.php');
 require_once('./Model.php');
 require_once('./View.php');
@@ -30,10 +36,14 @@ require_once('./Controller.php');
 $dao=new DataAccess(DBHOST,DBUSER,DBPASS,DBNAME);
 //根据$_GET["action"]取值的不同调用不同的控制器子类
 // print_r($_POST);
-print_r($_SERVER['REQUEST_METHOD']);
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-  $action="create";
 
+print_r($_SERVER['REQUEST_METHOD']);
+if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method'])) {
+  if( $_POST['method'] == 'put') {
+    $action="put";
+  }
+} elseif($_SERVER['REQUEST_METHOD'] == "POST") {
+  $action="create";
 } else {
   $action = '';
 }
@@ -46,6 +56,11 @@ switch ($action)
   //   break;
   case "create":
     $controller=new rectangleController($dao,$_POST);
+    // $controller=new listController($dao);
+    break;
+  case "put":
+    $controller=new rectangleController($dao,$_POST);
+    // $controller=new listController($dao);
     break;
   // case "list":
   //   $controller=new listController($dao);
@@ -62,8 +77,8 @@ switch ($action)
 
 
 
-// $view=$controller->getView(); //获取视图对象
-// $view->display(); //输出HTML
+$view=$controller->getView(); //获取视图对象
+$view->display(); //输出HTML
 ?>
 </body>
 </html>

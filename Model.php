@@ -20,8 +20,10 @@ function __construct($dao) {
 function listNote() { //获取全部留言
   $this->dao->fetch("SELECT * FROM rectangles");
 }
-function listRectangles() { //获取全部留言
-  $this->dao->fetch("SELECT * FROM rectangles");
+public function listRectangles() { //获取全部留言
+  $this->dao->fetch("SELECT * FROM rectangles;");
+  // print_r($this->dao->query->fetch_all());
+  return $this->dao->query->fetch_all();
 }
 function postNote($name,$content) { //插入一条新留言
   $sql = "INSERT INTO `test`.`note`
@@ -44,12 +46,12 @@ function deleteNote($id) { //删除一条留言，$id是该条留言的id
   //echo $sql;
   $this->dao->fetch($sql);
 }
-function getNote() { //获取以数组形式存储的一条留言
-//View利用此方法从查询结果中读出数据并显示
-if ( $note=$this->dao->getRow() )
-return $note;
-else
-return false;
-}
+  // function getRows() { //获取以数组形式存储的一条留言
+  //   //View利用此方法从查询结果中读出数据并显示
+  //   if ( $rows=$this->dao->getAllRows() )
+  //   return $rows;
+  //   else
+  //   return false;
+  // }
 }
 ?>
