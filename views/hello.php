@@ -12,7 +12,7 @@
 </form>
 
 <h3>Edit rectangle by entering the id of the rectangle you want to edit</h3>
-<form action="./index.php" method="put">
+<form action="./index.php" method="post">
   <input name="method" type="text" value="put" hidden>
   <label for="id">id</label>
   <input name="id" type='number' id='id'>

@@ -55,6 +55,14 @@ class rectangleController extends Controller{
     //表单中的留言项目存储在该系统数组中
   }
 }
+class putController extends Controller{
+  function __construct ($dao, $rectangle) {
+    echo "getting to putController";
+    parent::__construct($dao);
+    $this->view=new editRectangleView($this->model, $rectangle);
+  }
+  
+}
 //用于控制删除留言的子类
 class deleteController extends Controller{
   function __construct ($dao, $id) {

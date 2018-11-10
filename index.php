@@ -59,8 +59,7 @@ switch ($action)
     // $controller=new listController($dao);
     break;
   case "put":
-    $controller=new rectangleController($dao,$_POST);
-    // $controller=new listController($dao);
+    $controller=new putController($dao,$_POST);
     break;
   // case "list":
   //   $controller=new listController($dao);

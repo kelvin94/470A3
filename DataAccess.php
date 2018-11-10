@@ -56,10 +56,6 @@ function __construct($host,$user,$password,$dbname) {
 function fetch($sql) {
   // $this->query=mysql_unbuffered_query($sql,$this->db); // Perform query here
   $this->query=mysqli_query($this->db,$sql)or trigger_error($this->db->error."[$sql]"); // Perform query here
-  echo "<br>";
-  echo "what's in this->query in Dao->fetch function ";
-  // print_r($this->query->fetch_all());
-
 }
 //! 获取一条记录
 /**

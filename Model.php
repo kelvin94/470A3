@@ -34,13 +34,24 @@ function postNote($name,$content) { //插入一条新留言
   $this->dao->fetch($sql);
 }
 function createRectangle($width,$height, $color) {
-  $sql = "INSERT INTO `test3`.`rectangles`
+  $sql = "INSERT INTO ".DBNAME.".`rectangles`
   ( `width`, `height`, `color`)
   VALUES ( '$width', '$height', '$color');";
   //echo $sql; //对于较复杂的合成SQL语句，<br />
   //调试时用echo输出一下看看是否正确是一种常用的调试技巧
   $this->dao->fetch($sql);
 }
+////////////////////////////// EDIT rectangle ///////////
+function editRectangle($id, $width,$height, $color) {
+  $sql = 'UPDATE ' . DBNAME . '.' . 'rectangles' .
+  ' SET width='.$width . ', height='.$height . ', color=' . '"' . $color. '"' .
+  ' WHERE id=' . $id. ";";
+  // echo $sql; //对于较复杂的合成SQL语句，<br />
+  //调试时用echo输出一下看看是否正确是一种常用的调试技巧
+  $this->dao->fetch($sql);
+}
+////////////////////////////// EDIT rectangle ///////////
+
 function deleteNote($id) { //删除一条留言，$id是该条留言的id
   $sql = "DELETE FROM `test`.`note` WHERE `id`=$id;";
   //echo $sql;

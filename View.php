@@ -71,6 +71,23 @@ class rectangleView extends View //发表留言的子类
   }
   
 }
+class editRectangleView extends View //发表留言的子类
+{
+  function __construct($model, $rectangle) {
+    parent::__construct($model);
+    echo "in rectangleView<br>";
+    print_r($rectangle);
+    // $this->model->createRectangle($rectangle['width'],$rectangle['height'], $rectangle['color']);
+    $this->model->editRectangle($rectangle['id'],$rectangle['width'],$rectangle['height'], $rectangle['color']);
+    
+    // print_r($allRectangles);
+    // $test = '123';
+    
+    $allRectangles = $this->model->listRectangles();
+    require('views/hello.php');
+  }
+  
+}
 
 
 class deleteView extends View //删除留言的子类
