@@ -52,9 +52,9 @@ function editRectangle($id, $width,$height, $color) {
 }
 ////////////////////////////// EDIT rectangle ///////////
 
-function deleteNote($id) { //删除一条留言，$id是该条留言的id
-  $sql = "DELETE FROM `test`.`note` WHERE `id`=$id;";
-  //echo $sql;
+function deleteRectangle($id) { //删除一条留言，$id是该条留言的id
+  $sql = "DELETE FROM ". DBNAME . '.' . 'rectangles' . ' WHERE ' . 'id=' . $id . ';' ;
+  echo $sql;
   $this->dao->fetch($sql);
 }
   // function getRows() { //获取以数组形式存储的一条留言

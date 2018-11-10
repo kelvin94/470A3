@@ -4,8 +4,6 @@
 <title>PHP MVC留言板</title>
 </head>
 <body>
-<a href="post.htm">添加新留言</a><br>
-<p>
 
 
 <?php
@@ -37,10 +35,12 @@ $dao=new DataAccess(DBHOST,DBUSER,DBPASS,DBNAME);
 //根据$_GET["action"]取值的不同调用不同的控制器子类
 // print_r($_POST);
 
-print_r($_SERVER['REQUEST_METHOD']);
+// print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method'])) {
   if( $_POST['method'] == 'put') {
     $action="put";
+  } else if($_POST['method'] == 'destroy') {
+    $action="destroy";
   }
 } elseif($_SERVER['REQUEST_METHOD'] == "POST") {
   $action="create";
@@ -64,9 +64,9 @@ switch ($action)
   // case "list":
   //   $controller=new listController($dao);
   //   break;
-  // case "delete":
-  //   $controller=new deleteController($dao,$_GET["id"]);
-  //   break;
+  case "destroy":
+    $controller=new deleteController($dao,$_POST["id"]);
+    break;
   default:
     $controller=new indexController($dao);
     break;

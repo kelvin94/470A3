@@ -57,7 +57,6 @@ class rectangleController extends Controller{
 }
 class putController extends Controller{
   function __construct ($dao, $rectangle) {
-    echo "getting to putController";
     parent::__construct($dao);
     $this->view=new editRectangleView($this->model, $rectangle);
   }

@@ -95,8 +95,9 @@ class deleteView extends View //删除留言的子类
   function __construct($model, $id)
   {
     parent::__construct($model);
-    $this->model->deleteNote($id);
-    $this->output="Note Delete OK!<br><a href=\"".$_SERVER['PHP_SELF']."?action=list\">查看</a>";
+    $this->model->deleteRectangle($id);
+    $allRectangles = $this->model->listRectangles();
+    require('views/hello.php');
   }
 }
 

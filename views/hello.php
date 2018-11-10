@@ -1,13 +1,13 @@
-<h1>index page</h1>
+<h1>Jia Ying Lin (301243916) Assignment 3/4</h1>
 
 <h3>Create rectangle</h3>
 <form action="./index.php" method="post">
   <label for="width">width</label>
-  <input name="width" type='number' id='width'>
+  <input name="width" type='number' id='width' required>
   <label for="height">height</label>
-  <input name="height" type='number' id='height'>
+  <input name="height" type='number' id='height' required>
   <label for="color">color</label>
-  <input name="color" type='text' id='color'>
+  <input name="color" type='text' id='color' required>
   <input type='submit'>
 </form>
 
@@ -15,13 +15,23 @@
 <form action="./index.php" method="post">
   <input name="method" type="text" value="put" hidden>
   <label for="id">id</label>
-  <input name="id" type='number' id='id'>
+  <input name="id" type='number' id='id' required>
   <label for="width">width</label>
-  <input name="width" type='number' id='width'>
+  <input name="width" type='number' id='width' required>
   <label for="height">height</label>
-  <input name="height" type='number' id='height'>
+  <input name="height" type='number' id='height' required>
   <label for="color">color</label>
-  <input name="color" type='text' id='color'>
+  <input name="color" type='text' id='color' required>
+  <input type='submit'>
+</form>
+<br>
+<br>
+
+<h3>delete rectangle by entering the id of the rectangle you want to delete</h3>
+<form action="./index.php" method="post">
+  <input name="method" type="text" value="destroy" hidden>
+  <label for="id">id</label>
+  <input name="id" type='number' id='id' required>
   <input type='submit'>
 </form>
 <br>
@@ -40,14 +50,12 @@
 $(document).ready(function(){
     $(function() {
       <?php
-        $counter = 1;
         foreach ($allRectangles as $rectangle) {
           ?>
-          $('#rectangles').append('<p>ID: <?php echo $counter ?></p> <div style="margin-bottom: 5px;" id="<?php echo $counter ?>"></div>');
-          $('#'+<?php echo $counter;?>).width(<?php echo $rectangle[1]; ?>).height(<?php echo $rectangle[2]; ?>).css('background-color', '<?php echo $rectangle[3]; ?>');
+          $('#rectangles').append('<p>ID: <?php echo $rectangle[0]; ?></p> <div style="margin-bottom: 5px;" id="<?php echo $rectangle[0]; ?>"></div>');
+          $('#'+<?php echo $rectangle[0]; ?>).width(<?php echo $rectangle[1]; ?>).height(<?php echo $rectangle[2]; ?>).css('background-color', '<?php echo $rectangle[3]; ?>');
           
         <?php
-         $counter++;
         }
       ?>
       
