@@ -30,7 +30,9 @@ function __construct($host,$user,$password,$dbname) {
         PRIMARY KEY(ID),
         Width int,
         Height int,
-        Color varchar(255));");
+        Color varchar(255),
+        rotateAngle int,
+        flashyColor varchar(255));");
     }
   }
   else {
@@ -43,19 +45,5 @@ function fetch($sql) {
   $this->query=mysqli_query($this->db,$sql)or trigger_error($this->db->error."[$sql]"); // Perform query here
 }
 
-  // function getRow () {
-  //   if ( $row=mysql_fetch_array($this->query,MYSQL_ASSOC) )
-  //   //MYSQL_ASSOC参数决定了数组键名用字段名表示
-  //   return $row;
-  //   else
-  //   return false;
-  // } 
-  // function getAllRows () {
-  //   if ( $rows = mysql_fetch_array($this->query,MYSQL_ASSOC) )
-  //   //MYSQL_ASSOC参数决定了数组键名用字段名表示
-  //   return $rows;
-  //   else
-  //   return false;
-  // } 
 }
 ?>

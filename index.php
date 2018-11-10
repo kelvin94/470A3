@@ -30,7 +30,6 @@ require_once('./View.php');
 require_once('./Controller.php');
 $dao=new DataAccess(DBHOST,DBUSER,DBPASS,DBNAME);
 
-
 // print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method'])) {
   if( $_POST['method'] == 'put') {

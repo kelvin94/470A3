@@ -13,17 +13,17 @@ public function listRectangles() {
   return $this->dao->query->fetch_all();
 }
 
-function createRectangle($width,$height, $color) {
+function createRectangle($width,$height, $color, $rotateAngle, $flashyColor) {
   $sql = "INSERT INTO ".DBNAME.".`rectangles`
-  ( `width`, `height`, `color`)
-  VALUES ( '$width', '$height', '$color');";
+  ( `width`, `height`, `color`, `rotateAngle`, `flashyColor`)
+  VALUES ( '$width', '$height', '$color', '$rotateAngle', '$flashyColor');";
 
   $this->dao->fetch($sql);
 }
 ////////////////////////////// EDIT rectangle ///////////
-function editRectangle($id, $width,$height, $color) {
+function editRectangle($id, $width,$height, $color, $rotateAngle, $flashyColor) {
   $sql = 'UPDATE ' . DBNAME . '.' . 'rectangles' .
-  ' SET width='.$width . ', height='.$height . ', color=' . '"' . $color. '"' .
+  ' SET width='.$width . ', height='.$height . ', color=' . '"' . $color. '"' . ', rotateAngle=' . $rotateAngle . ', flashyColor=' . '"' . $flashyColor . '"' .
   ' WHERE id=' . $id. ";";
   $this->dao->fetch($sql);
 }

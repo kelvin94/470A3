@@ -42,7 +42,7 @@ class rectangleView extends View
 {
   function __construct($model, $rectangle) {
     parent::__construct($model);
-    $this->model->createRectangle($rectangle['width'],$rectangle['height'], $rectangle['color']);
+    $this->model->createRectangle($rectangle['width'],$rectangle['height'], $rectangle['color'], $rectangle['rotateAngle'], $rectangle['flashyColor']);
 
     $allRectangles = $this->model->listRectangles();
     require('views/hello.php');
@@ -53,7 +53,7 @@ class editRectangleView extends View
 {
   function __construct($model, $rectangle) {
     parent::__construct($model);
-    $this->model->editRectangle($rectangle['id'],$rectangle['width'],$rectangle['height'], $rectangle['color']);
+    $this->model->editRectangle($rectangle['id'],$rectangle['width'],$rectangle['height'], $rectangle['color'], $rectangle['rotateAngle'], $rectangle['flashyColor']);
 
     $allRectangles = $this->model->listRectangles();
     require('views/hello.php');
