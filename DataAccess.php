@@ -25,56 +25,37 @@ function __construct($host,$user,$password,$dbname) {
 
   if ($result = mysqli_query($this->db, "SHOW TABLES LIKE 'rectangles';")) {
     if($result->num_rows < 1 || $result == null) {
-        echo "Table not exists";
-        // $query = "SELECT * FROM students";
-        // $query = "CREATE TABLE Rectangles(Width int,
-        //   Height int,
-        //   Color varchar(255));";
-        $result2 = $this->db->query("CREATE TABLE Rectangles(
-          ID int NOT NULL AUTO_INCREMENT,
-          PRIMARY KEY(ID),
-          Width int,
-          Height int,
-          Color varchar(255));");
-        // $result2 = mysqli_query($this->db, $query);
-        echo "<br>";
-        echo "<br>";
-        echo $result2;
-        echo "<br>";
-      }
+      $result2 = $this->db->query("CREATE TABLE Rectangles(
+        ID int NOT NULL AUTO_INCREMENT,
+        PRIMARY KEY(ID),
+        Width int,
+        Height int,
+        Color varchar(255));");
+    }
   }
   else {
       echo "Table does  exist";
   }
 }
-//! 执行SQL语句
-/**
-* 执行SQL语句，获取一个查询源并存储在数据成员$query中
-* @param $sql 被执行的SQL语句字符串
-* @return void
-*/
+
+// execute the sql statement
 function fetch($sql) {
-  // $this->query=mysql_unbuffered_query($sql,$this->db); // Perform query here
   $this->query=mysqli_query($this->db,$sql)or trigger_error($this->db->error."[$sql]"); // Perform query here
 }
-//! 获取一条记录
-/**
-* 以数组形式返回查询结果的一行记录，通过循环调用该函数可遍历全部记录
-* @return mixed
-*/
-  function getRow () {
-    if ( $row=mysql_fetch_array($this->query,MYSQL_ASSOC) )
-    //MYSQL_ASSOC参数决定了数组键名用字段名表示
-    return $row;
-    else
-    return false;
-  } 
-  function getAllRows () {
-    if ( $rows = mysql_fetch_array($this->query,MYSQL_ASSOC) )
-    //MYSQL_ASSOC参数决定了数组键名用字段名表示
-    return $rows;
-    else
-    return false;
-  } 
+
+  // function getRow () {
+  //   if ( $row=mysql_fetch_array($this->query,MYSQL_ASSOC) )
+  //   //MYSQL_ASSOC参数决定了数组键名用字段名表示
+  //   return $row;
+  //   else
+  //   return false;
+  // } 
+  // function getAllRows () {
+  //   if ( $rows = mysql_fetch_array($this->query,MYSQL_ASSOC) )
+  //   //MYSQL_ASSOC参数决定了数组键名用字段名表示
+  //   return $rows;
+  //   else
+  //   return false;
+  // } 
 }
 ?>

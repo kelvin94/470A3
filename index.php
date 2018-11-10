@@ -6,9 +6,7 @@
 
 
 <?php
-// print_r($_SERVER);
-//echo "<br>";
-// print_r($_SERVER);
+
 
 if($_SERVER['SERVER_ADDR'] != "::1"){
   // Production config DB
@@ -21,18 +19,17 @@ if($_SERVER['SERVER_ADDR'] != "::1"){
   define('DBHOST', 'localhost');
   define('DBNAME', 'test3');
   define("DBUSER", "root");
-  define("DBPASS", "");
+  define("DBPASS", "kelvin5568qq"); // desktop
+  // define("DBPASS", ""); // laptop
 }
-//!index.php 总入口
+
 
 require_once('./DataAccess.php');
 require_once('./Model.php');
 require_once('./View.php');
 require_once('./Controller.php');
-//创建DataAccess对象（请根据你的需要修改参数值）
 $dao=new DataAccess(DBHOST,DBUSER,DBPASS,DBNAME);
-//根据$_GET["action"]取值的不同调用不同的控制器子类
-// print_r($_POST);
+
 
 // print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method'])) {
@@ -50,19 +47,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method'])) {
 
 switch ($action)
 {
-  // case "post":
-  //   $controller=new postController($dao,$_POST);
-  //   break;
+
   case "create":
     $controller=new rectangleController($dao,$_POST);
-    // $controller=new listController($dao);
     break;
   case "put":
     $controller=new putController($dao,$_POST);
     break;
-  // case "list":
-  //   $controller=new listController($dao);
-  //   break;
   case "destroy":
     $controller=new deleteController($dao,$_POST["id"]);
     break;
